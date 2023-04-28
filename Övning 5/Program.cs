@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
+using System.Text;
 
 namespace Övning_5
 {
@@ -38,17 +39,21 @@ namespace Övning_5
             List<string> felsvar = new List<string>();
             List<int> felsvarindex = new List<int>();
             int poäng = 0;
-            Random rnd = new Random(); 
+            Random rnd = new Random();
+            Console.OutputEncoding = Encoding.UTF8;
             #endregion
             while (true)
             {
                 #region Intro meny
-                Console.WriteLine("Välkommen till Glosor programmet välj en av följande alternativ:");
-                Console.WriteLine("Lägg till glosor (1)");
-                Console.WriteLine("Testa dig (2)");
-                Console.WriteLine("Kolla vilka glosor som är inskrivna (3)");
-                Console.WriteLine("Byta plats på glosorna (4)");
-                Console.WriteLine("Stäng av (5)"); 
+                Console.WriteLine("Välkommen till Förhörningsprogramet\u2122 välj en av följande alternativ:");
+                Console.WriteLine("-------------");
+                Console.WriteLine("Lägg till glosor manuelt (1)");
+                Console.WriteLine("Lägg till många glosor samtidigt (2)");
+                Console.WriteLine("Testa dig (3)");
+                Console.WriteLine("Kolla vilka glosor som är inskrivna (4)");
+                Console.WriteLine("Byta plats på frågor och svar (5)");
+                Console.WriteLine("Stäng av (6)");
+                Console.WriteLine("------------");
                 #endregion
                 //kollar vad användaren har matat in och ifall det är en siffra
                 if (int.TryParse(Console.ReadLine(), out select))
@@ -60,6 +65,7 @@ namespace Övning_5
                         Console.WriteLine("Skriv in ett vad du vill få som fråga följt av svaret separerat med ett \"-\" ex blomma-flower");
                         Console.WriteLine("När du är klar skriv \"klar\"");
                         Console.WriteLine("Vill du ta bort alla glosor skriver du \"ta bort\"");
+                        Console.WriteLine("------------");
                         #region Lägga till glosor
                         while (true)
                         {
@@ -165,10 +171,50 @@ namespace Övning_5
                         }
                         #endregion
                         Console.Clear();
-                    } 
+                    }
                     #endregion
-                    #region Testet (2)
+                    #region Lägget till glosor mindre manulet (2)
                     else if (select == 2)
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Kopiera in alla dina glosor i formatet \"blomma-flower|göra-do|hålla-hold\"");
+                        Console.WriteLine("Var noga med att formatet korrekt eftersom denna kod är känsligare än manuella koden");
+                        Console.WriteLine("Vill du gå tillbaks kan du skriva \"\"");
+                        Console.WriteLine("------------");
+                        Console.Write("här: ");
+                        inmatat = Console.ReadLine();
+
+                        if (inmatat != "klar")
+                        {
+                            nummer = 0;
+                            while (true)
+                            {
+                                if (inmatat.Contains('|'))
+                                {
+                                    indexof = inmatat.IndexOf('|');
+                                    tempstring = inmatat.Remove(indexof);
+                                    inmatat = inmatat.Remove(0, indexof + 1);
+                                    indexof = tempstring.IndexOf('-');
+                                    språk1.Add(tempstring.Remove(indexof));
+                                    språk2.Add(tempstring.Remove(0, indexof + 1));
+                                }
+                                else if (inmatat != "")
+                                {
+                                    tempstring = inmatat;
+                                    indexof = tempstring.IndexOf('-');
+                                    språk1.Add(tempstring.Remove(indexof));
+                                    språk2.Add(tempstring.Remove(0, indexof + 1));
+                                    break;
+                                }
+                            }
+                            Console.ReadLine();
+
+                        }
+                        Console.Clear();
+                    }
+                    #endregion
+                    #region Testet (3)
+                    else if (select == 3)
                     {
                         Console.Clear();
                         poäng = 0;
@@ -196,9 +242,9 @@ namespace Övning_5
                         {
                             for (int i = 0; i < felsvar.Count; i++)
                             {
-                                Console.Write("Fel " + (i+1) + ": ");
+                                Console.Write("Fel " + (i + 1) + ": ");
                                 Console.WriteLine($"Du skrev {felsvar[i]} istället för {språk2[felsvarindex[i]]}");
-                            } 
+                            }
                         }
                         else
                         {
@@ -208,10 +254,10 @@ namespace Övning_5
                         felsvarindex.Clear();
                         Console.ReadLine();
                         Console.Clear();
-                    } 
+                    }
                     #endregion
-                    #region Skriver ut glororna som matats in (3)
-                    else if (select == 3)
+                    #region Skriver ut glororna som matats in (4)
+                    else if (select == 4)
                     {
                         Console.Clear();
                         if (språk1.Count > 0)
@@ -231,8 +277,8 @@ namespace Övning_5
                         Console.Clear();
                     }
                     #endregion
-                    #region Byter plats på frågor och svar (4)
-                    if (select == 4)
+                    #region Byter plats på frågor och svar (5)
+                    else if (select == 5)
                     {
                         //byter plats på allt skit
                         for (int i = 0; i < språk1.Count; i++)
@@ -244,12 +290,12 @@ namespace Övning_5
                         tempstring = "";
                         //enbart visuell laddningskärm för att det är kul
                         for (int i = 0; i < 15; i++)
-                        {                            
+                        {
                             tempstring += "&";
                             Console.Clear();
                             Console.WriteLine(tempstring);
                             Thread.Sleep(50);
-                            tempstring = tempstring.Remove(tempstring.Length-1,1);
+                            tempstring = tempstring.Remove(tempstring.Length - 1, 1);
                             tempstring += "%";
                             Console.Clear();
                             Console.WriteLine(tempstring);
@@ -265,11 +311,11 @@ namespace Övning_5
                         Console.Clear();
                     }
                     #endregion
-                    #region Avslutar programet (5)
-                    else if (select == 5)
+                    #region Avslutar programet (6)
+                    else if (select == 6)
                     {
                         break;
-                    } 
+                    }
                     #endregion
                     //felhantering
                     else
