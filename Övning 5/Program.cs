@@ -207,8 +207,6 @@ namespace Övning_5
                                     break;
                                 }
                             }
-                            Console.ReadLine();
-
                         }
                         Console.Clear();
                     }
@@ -217,6 +215,8 @@ namespace Övning_5
                     else if (select == 3)
                     {
                         Console.Clear();
+                        Console.WriteLine("Testet");
+                        Console.WriteLine("------------");
                         poäng = 0;
                         temp = rnd.Next(0, 101);
                         Shuffle(språk1, temp);
@@ -263,6 +263,7 @@ namespace Övning_5
                         if (språk1.Count > 0)
                         {
                             Console.WriteLine("Här kommer en lista på alla glosorna(klicka enter för att gå vidare):");
+                            Console.WriteLine("------------");
                             for (int i = 0; i < språk1.Count; i++)
                             {
                                 Console.WriteLine($"{språk1[i]}-{språk2[i]}");
@@ -306,6 +307,7 @@ namespace Övning_5
                             Console.WriteLine(tempstring);
                             Thread.Sleep(50);
                         }
+                        Console.Clear();
                         Console.WriteLine("Klar!");
                         Console.ReadLine();
                         Console.Clear();
