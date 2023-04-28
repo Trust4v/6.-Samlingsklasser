@@ -17,7 +17,7 @@ namespace Övning_5
             while (n > 1)
             {
                 n--;
-                int k = rng.Next(n + 1);
+                int k = rng.Next(0, n + 1);
                 T value = list[k];
                 list[k] = list[n];
                 list[n] = value;
@@ -187,6 +187,7 @@ namespace Övning_5
                         if (inmatat != "klar")
                         {
                             nummer = 0;
+                            //Hanterar strängen och delar upp den i hanterbara bitar som sedans läggs till i listorna
                             while (true)
                             {
                                 if (inmatat.Contains('|'))
@@ -218,6 +219,7 @@ namespace Övning_5
                         Console.WriteLine("Testet");
                         Console.WriteLine("------------");
                         poäng = 0;
+                        //skapar en random seed som sen används i en funktion som blandar listan 
                         temp = rnd.Next(0, 101);
                         Shuffle(språk1, temp);
                         Shuffle(språk2, temp);
@@ -226,18 +228,20 @@ namespace Övning_5
 
                             Console.Write(språk1[i] + ": ");
                             inmatat = Console.ReadLine();
+                            //om det man skrev var korrekt får man poäng
                             if (inmatat == språk2[i])
                             {
                                 poäng++;
                             }
+                            //annars inte
                             else
                             {
                                 felsvar.Add(inmatat);
                                 felsvarindex.Add(i);
                             }
-
                         }
                         Console.WriteLine("Du fick " + poäng + "/" + språk1.Count);
+                        //Skriver ut felen man gjorde om man gjorde några
                         if (felsvar.Count > 0)
                         {
                             for (int i = 0; i < felsvar.Count; i++)
@@ -246,6 +250,7 @@ namespace Övning_5
                                 Console.WriteLine($"Du skrev {felsvar[i]} istället för {språk2[felsvarindex[i]]}");
                             }
                         }
+                        //Annars skriver den inte ut något
                         else
                         {
                             Console.WriteLine("Du skrev alla rätt! Hurra!");
