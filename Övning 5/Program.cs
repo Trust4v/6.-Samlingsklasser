@@ -53,7 +53,7 @@ namespace Övning_5
                 Console.WriteLine("Kolla vilka glosor som är inskrivna (4)");
                 Console.WriteLine("Byta plats på frågor och svar (5)");
                 Console.WriteLine("Stäng av (6)");
-                Console.WriteLine("------------");
+                Console.WriteLine("-------------");
                 #endregion
                 //kollar vad användaren har matat in och ifall det är en siffra
                 if (int.TryParse(Console.ReadLine(), out select))
@@ -96,7 +96,7 @@ namespace Övning_5
                                 Console.WriteLine("När du är klar skriv \"klar\"");
                                 Console.WriteLine("Vill du ta bort alla glosor skriver du \"ta bort\"");
                             }
-                            else if (inmatat.ToLower().Contains("-") && antalbindesträck == 1)
+                            else if (inmatat.ToLower().Contains("-") && antalbindesträck == 1 && inmatat.Length >= 3)
                             {
                                 #region Ta bort mellanslag innan och efter inskriven text samt separerar in i listorna
                                 indexof = inmatat.IndexOf("-");
@@ -179,7 +179,7 @@ namespace Övning_5
                         Console.Clear();
                         Console.WriteLine("Kopiera in alla dina glosor i formatet \"blomma-flower|göra-do|hålla-hold\"");
                         Console.WriteLine("Var noga med att formatet korrekt eftersom denna kod är känsligare än manuella koden");
-                        Console.WriteLine("Vill du gå tillbaks kan du skriva \"\"");
+                        Console.WriteLine("Vill du gå tillbaks kan du skriva \"klar\"");
                         Console.WriteLine("------------");
                         Console.Write("här: ");
                         inmatat = Console.ReadLine();
